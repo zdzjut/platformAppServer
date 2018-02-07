@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boot.druid.mapper.sysAttachment.SysAttachmentMapper" >
+  <resultMap id="BaseResultMap" type="com.boot.druid.model.sysAttachment.SysAttachment" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="before_upload_name" property="beforeUploadName" jdbcType="VARCHAR" />
+    <result column="after_upload_name" property="afterUploadName" jdbcType="VARCHAR" />
+    <result column="doc_type" property="docType" jdbcType="VARCHAR" />
+    <result column="doc_size" property="docSize" jdbcType="BIGINT" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="delete_flag" property="deleteFlag" jdbcType="INTEGER" />
+    <result column="creator" property="creator" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="updator" property="updator" jdbcType="INTEGER" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="business_type" property="businessType" jdbcType="VARCHAR" />
+  </resultMap>
+</mapper>

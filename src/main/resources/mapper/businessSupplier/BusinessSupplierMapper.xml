@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boot.druid.mapper.businessSupplier.BusinessSupplierMapper">
+    <resultMap id="BaseResultMap" type="com.boot.druid.model.businessSupplier.BusinessSupplier">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="client_id" property="clientId" jdbcType="INTEGER"/>
+        <result column="supplier_name" property="supplierName" jdbcType="VARCHAR"/>
+        <result column="representative" property="representative" jdbcType="VARCHAR"/>
+        <result column="supplier_email" property="supplierEmail" jdbcType="VARCHAR"/>
+        <result column="supplier_province" property="supplierProvince" jdbcType="INTEGER"/>
+        <result column="supplier_city" property="supplierCity" jdbcType="INTEGER"/>
+        <result column="supplier_county" property="supplierCounty" jdbcType="INTEGER"/>
+        <result column="supplier_full_address" property="supplierFullAddress" jdbcType="VARCHAR"/>
+        <result column="supplier_found_date" property="supplierFoundDate" jdbcType="TIMESTAMP"/>
+        <result column="register_capital" property="registerCapital" jdbcType="VARCHAR"/>
+        <result column="contact_people" property="contactPeople" jdbcType="VARCHAR"/>
+        <result column="contact_phone" property="contactPhone" jdbcType="VARCHAR"/>
+        <result column="tax_code" property="taxCode" jdbcType="VARCHAR"/>
+        <result column="is_merged" property="isMerged" jdbcType="INTEGER"/>
+        <result column="social_credit_code" property="socialCreditCode" jdbcType="VARCHAR"/>
+        <result column="social_credit_image" property="socialCreditImage" jdbcType="VARCHAR"/>
+        <result column="id_card_no" property="idCardNo" jdbcType="VARCHAR"/>
+        <result column="id_card_a_image" property="idCardAImage" jdbcType="VARCHAR"/>
+        <result column="id_card_b_image" property="idCardBImage" jdbcType="VARCHAR"/>
+        <result column="tax_registration_code" property="taxRegistrationCode" jdbcType="VARCHAR"/>
+        <result column="tax_registration_image" property="taxRegistrationImage" jdbcType="VARCHAR"/>
+        <result column="business_license_code" property="businessLicenseCode" jdbcType="VARCHAR"/>
+        <result column="business_license_iamge" property="businessLicenseIamge" jdbcType="VARCHAR"/>
+        <result column="organization_image" property="organizationImage" jdbcType="VARCHAR"/>
+        <result column="general_taxpayer_image" property="generalTaxpayerImage" jdbcType="VARCHAR"/>
+        <result column="tax_invoice_image" property="taxInvoiceImage" jdbcType="VARCHAR"/>
+        <result column="audit_status" property="auditStatus" jdbcType="INTEGER"/>
+        <result column="wf_status" property="wfStatus" jdbcType="INTEGER"/>
+        <result column="remarks" property="remarks" jdbcType="VARCHAR"/>
+        <result column="delete_flag" property="deleteFlag" jdbcType="INTEGER"/>
+        <result column="creator" property="creator" jdbcType="INTEGER"/>
+        <result column="creator_type" property="creatorType" jdbcType="INTEGER"/>
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+        <result column="updator" property="updator" jdbcType="INTEGER"/>
+        <result column="updator_type" property="updatorType" jdbcType="INTEGER"/>
+        <result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
+        <result column="if_using" property="ifUsing" jdbcType="INTEGER"/>
+        <result column="if_offline_used" property="ifOfflineUsed" jdbcType="INTEGER"/>
+        <result column="sensitive_region" property="sensitiveRegion" jdbcType="INTEGER"/>
+    </resultMap>
+    <select id="list" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+        SELECT id,supplier_name,representative, wf_status
+        FROM business_supplier
+        WHERE client_id=#{clientId} AND delete_flag=-2022100101
+        <if test="keyword != null">
+            AND (supplier_name LIKE #{keyword} OR representative LIKE #{keyword})
+        </if>
+    </select>
+</mapper>

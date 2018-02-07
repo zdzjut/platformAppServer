@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boot.druid.mapper.businessCommodityInfo.BusinessCommodityInfoMapper">
+  <resultMap id="BaseResultMap" type="com.boot.druid.model.businessCommodityInfo.BusinessCommodityInfo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="client_id" jdbcType="INTEGER" property="clientId" />
+    <result column="commodity_name" jdbcType="VARCHAR" property="commodityName" />
+    <result column="commodity_english_name" jdbcType="VARCHAR" property="commodityEnglishName" />
+    <result column="commodity_material" jdbcType="VARCHAR" property="commodityMaterial" />
+    <result column="commodity_brand" jdbcType="VARCHAR" property="commodityBrand" />
+    <result column="commodity_model" jdbcType="VARCHAR" property="commodityModel" />
+    <result column="commodity_inspection" jdbcType="INTEGER" property="commodityInspection" />
+    <result column="HSCode" jdbcType="VARCHAR" property="hscode" />
+    <result column="commodity_appreciation_tariff" jdbcType="DECIMAL" property="commodityAppreciationTariff" />
+    <result column="commodity_recede_tariff" jdbcType="DECIMAL" property="commodityRecedeTariff" />
+    <result column="application" jdbcType="VARCHAR" property="application" />
+    <result column="audit_status" jdbcType="INTEGER" property="auditStatus" />
+    <result column="commodity_stream_id" jdbcType="INTEGER" property="commodityStreamId" />
+    <result column="commodity_img" jdbcType="VARCHAR" property="commodityImg" />
+    <result column="commodity_inner_img" jdbcType="VARCHAR" property="commodityInnerImg" />
+    <result column="commodity_brand_img" jdbcType="VARCHAR" property="commodityBrandImg" />
+    <result column="commodity_other_img" jdbcType="VARCHAR" property="commodityOtherImg" />
+    <result column="wf_status" jdbcType="INTEGER" property="wfStatus" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="declaration_items" jdbcType="VARCHAR" property="declarationItems" />
+    <result column="delete_flag" jdbcType="INTEGER" property="deleteFlag" />
+    <result column="creator" jdbcType="INTEGER" property="creator" />
+    <result column="creator_type" jdbcType="INTEGER" property="creatorType" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="updator" jdbcType="INTEGER" property="updator" />
+    <result column="updator_type" jdbcType="INTEGER" property="updatorType" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="state_flag" jdbcType="INTEGER" property="stateFlag" />
+    <result column="sensitive_commodity" jdbcType="INTEGER" property="sensitiveCommodity" />
+    <result column="information_confirmation" jdbcType="INTEGER" property="informationConfirmation" />
+  </resultMap>
+
+    <select id="list" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+        SELECT id, commodity_name,commodity_model,wf_status FROM business_commodity_info
+        WHERE client_id=#{clientId} AND delete_flag=-2022100101
+        <if test="keyword != null">
+            AND (commodity_name LIKE #{keyword} OR commodity_model LIKE #{keyword})
+        </if>
+    </select>
+</mapper>

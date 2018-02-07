@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boot.druid.mapper.businessConsigneeInfo.BusinessConsigneeInfoMapper">
+    <resultMap id="BaseResultMap" type="com.boot.druid.model.businessConsigneeInfo.BusinessConsigneeInfo">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="client_id" property="clientId" jdbcType="INTEGER"/>
+        <result column="firm_type" property="firmType" jdbcType="INTEGER"/>
+        <result column="consignee_name" property="consigneeName" jdbcType="VARCHAR"/>
+        <result column="consignee_id" property="consigneeId" jdbcType="INTEGER"/>
+        <result column="consignee_img" property="consigneeImg" jdbcType="VARCHAR"/>
+        <result column="register_no" property="registerNo" jdbcType="VARCHAR"/>
+        <result column="consignee_email" property="consigneeEmail" jdbcType="VARCHAR"/>
+        <result column="consignee_country" property="consigneeCountry" jdbcType="INTEGER"/>
+        <result column="consignee_city" property="consigneeCity" jdbcType="VARCHAR"/>
+        <result column="consignee_address" property="consigneeAddress" jdbcType="VARCHAR"/>
+        <result column="consignee_people" property="consigneePeople" jdbcType="VARCHAR"/>
+        <result column="contact_phone" property="contactPhone" jdbcType="VARCHAR"/>
+        <result column="grade" property="grade" jdbcType="VARCHAR"/>
+        <result column="audit_status" property="auditStatus" jdbcType="INTEGER"/>
+        <result column="remarks" property="remarks" jdbcType="VARCHAR"/>
+        <result column="if_credit_survey" property="ifCreditSurvey" jdbcType="INTEGER"/>
+        <result column="financing_type" property="financingType" jdbcType="INTEGER"/>
+        <result column="sub_gm_usd_bank_account" property="subGmUsdBankAccount" jdbcType="VARCHAR"/>
+        <result column="zxb_send_mark" property="zxbSendMark" jdbcType="VARCHAR"/>
+        <result column="is_chinese" property="isChinese" jdbcType="VARCHAR"/>
+        <result column="zxb_reject_reason" property="zxbRejectReason" jdbcType="VARCHAR"/>
+        <result column="zxb_send_remark" property="zxbSendRemark" jdbcType="VARCHAR"/>
+        <result column="wf_status" property="wfStatus" jdbcType="INTEGER"/>
+        <result column="delete_flag" property="deleteFlag" jdbcType="INTEGER"/>
+        <result column="creator" property="creator" jdbcType="INTEGER"/>
+        <result column="creator_type" property="creatorType" jdbcType="INTEGER"/>
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+        <result column="updator" property="updator" jdbcType="INTEGER"/>
+        <result column="updator_type" property="updatorType" jdbcType="INTEGER"/>
+        <result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <select id="list" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+        SELECT A.id,A.consignee_name consignee_name,
+        A.wf_status wf_status,B.chinese_name consignee_address
+        FROM business_consignee_info A JOIN sys_country_port B ON A.consignee_country=B.id
+        WHERE client_id=#{clientId} AND delete_flag=-2022100101
+        <if test="keyword != null">
+            AND (consignee_name LIKE #{keyword} OR chinese_name LIKE #{keyword})
+        </if>
+    </select>
+</mapper>

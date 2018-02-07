@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boot.druid.mapper.sysArea.SysAreaMapper">
+    <resultMap id="BaseResultMap" type="com.boot.druid.model.sysArea.SysArea">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="code" property="code" jdbcType="VARCHAR"/>
+        <result column="level" property="level" jdbcType="CHAR"/>
+        <result column="parent" property="parent" jdbcType="INTEGER"/>
+        <result column="area_code" property="areaCode" jdbcType="VARCHAR"/>
+        <result column="postcode" property="postcode" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="listProvince"  resultMap="BaseResultMap">
+        SELECT id,name
+        FROM sys_area
+        WHERE level = 1
+    </select>
+    <select id="listChildren" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT id,name
+        FROM sys_area
+        WHERE parent = #{id}
+    </select>
+</mapper>

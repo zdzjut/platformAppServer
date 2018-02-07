@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boot.druid.mapper.businessPeople.BusinessPeopleMapper">
+    <resultMap id="BaseResultMap" type="com.boot.druid.model.businessPeople.BusinessPeople">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="commodity_id" property="commodityId" jdbcType="INTEGER"/>
+        <result column="client_id" property="clientId" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="INTEGER"/>
+        <result column="mail" property="mail" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="spare_one" property="spareOne" jdbcType="VARCHAR"/>
+        <result column="spare_two" property="spareTwo" jdbcType="VARCHAR"/>
+        <result column="spare_three" property="spareThree" jdbcType="VARCHAR"/>
+        <result column="spare_four" property="spareFour" jdbcType="VARCHAR"/>
+        <result column="remarks" property="remarks" jdbcType="VARCHAR"/>
+        <result column="delete_flag" property="deleteFlag" jdbcType="INTEGER"/>
+        <result column="creator" property="creator" jdbcType="INTEGER"/>
+        <result column="creator_type" property="creatorType" jdbcType="INTEGER"/>
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+        <result column="updator" property="updator" jdbcType="INTEGER"/>
+        <result column="updator_type" property="updatorType" jdbcType="INTEGER"/>
+        <result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <select id="findByCommodityId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT *FROM business_people WHERE commodity_id=#{commodityId}
+    </select>
+</mapper>
