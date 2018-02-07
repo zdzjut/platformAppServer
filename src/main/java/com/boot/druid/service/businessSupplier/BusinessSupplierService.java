@@ -64,7 +64,7 @@ public class BusinessSupplierService {
     public Result detailSupplier(Integer id) {
         try {
             BusinessSupplier businessSupplier = businessSupplierMapper.selectByPrimaryKey(id);
-            String area = sysAreaMapper.selectByPrimaryKey(businessSupplier.getSupplierCounty()).getName()+ sysAreaMapper.selectByPrimaryKey(businessSupplier.getSupplierProvince()).getName() + sysAreaMapper.selectByPrimaryKey(businessSupplier.getSupplierCity()).getName();
+            String area = sysAreaMapper.selectByPrimaryKey(businessSupplier.getSupplierProvince()).getName() + sysAreaMapper.selectByPrimaryKey(businessSupplier.getSupplierCity()).getName() + sysAreaMapper.selectByPrimaryKey(businessSupplier.getSupplierCounty()).getName();
             businessSupplier.setRemarks(area);
             return new Result("success", "查询成功", businessSupplier);
         } catch (Exception e) {
