@@ -24,8 +24,6 @@ public class MyInterceptor implements HandlerInterceptor {
         } else {
             System.out.println(token);
             BeanFactory factory = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getServletContext());
-            TokenService tokenService = (TokenService) factory.getBean("tokenService");
-            Boolean check = tokenService.check(token);
             if (!check) {
                 request.getRequestDispatcher("/about/error").forward(request, response);
             }
