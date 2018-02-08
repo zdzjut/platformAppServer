@@ -2,22 +2,20 @@ package com.boot.druid.service.businessSupplier;
 
 import com.boot.druid.mapper.businessSupplier.BusinessSupplierMapper;
 import com.boot.druid.mapper.sysArea.SysAreaMapper;
-import com.boot.druid.mapper.sysCountryPort.SysCountryPortMapper;
 import com.boot.druid.model.businessSupplier.BusinessSupplier;
 import com.boot.druid.model.sysArea.SysArea;
-import com.boot.druid.model.sysCountryPort.SysCountryPort;
 import com.boot.druid.service.SysSequenceService;
 import com.boot.druid.util.PageParam;
 import com.boot.druid.util.Result;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class BusinessSupplierService {
@@ -25,8 +23,7 @@ public class BusinessSupplierService {
     private BusinessSupplierMapper businessSupplierMapper;
     @Resource
     private SysSequenceService sysSequenceService;
-    @Resource
-    private SysCountryPortMapper sysCountryPortMapper;
+
     @Resource
     private SysAreaMapper sysAreaMapper;
 
@@ -119,4 +116,22 @@ public class BusinessSupplierService {
     }
 
 
+    public Result listAllArea(Integer id) {
+        try {
+            BusinessSupplier businessSupplier = businessSupplierMapper.selectByPrimaryKey(id);
+            Integer province = businessSupplier.getSupplierProvince();
+            Integer city = businessSupplier.getSupplierCity();
+            List<SysArea> provinces = sysAreaMapper.listProvince();
+            List<SysArea> cities = sysAreaMapper.listChildren(province);
+            List<SysArea> counties = sysAreaMapper.listChildren(city);
+            Map<String, List<SysArea>> map = new HashMap<>();
+            map.put("provinces", provinces);
+            map.put("cities", cities);
+            map.put("counties", counties);
+            return new Result("success", "查询成功", map);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result("failure", "异常", e);
+        }
+    }
 }

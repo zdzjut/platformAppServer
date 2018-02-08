@@ -68,6 +68,22 @@ public class UploadController {
         }
     }
     /**
+     * 修改供应商图片
+     */
+    @RequestMapping(value = "/modifySupplierPicture")
+    public Result modifySupplierPicture(HttpServletRequest req,Integer supplierId) {
+        try {
+            StandardMultipartHttpServletRequest request = (StandardMultipartHttpServletRequest) req;
+            Iterator<String> fileNames = request.getFileNames();
+            MultipartFile file = request.getFile(fileNames.next());
+
+            return uploadPictureService.updateBusinessConsigneeInfoFile(file, supplierId);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result("failure", "异常", e);
+        }
+    }
+    /**
      * 保存收货人证件图片
      */
     @RequestMapping(value = "/consigneeFile")

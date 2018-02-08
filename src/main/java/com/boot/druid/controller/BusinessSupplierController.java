@@ -51,6 +51,13 @@ public class BusinessSupplierController {
     public Result detailSupplier(Integer id) {
         return businessSupplierService.detailSupplier(id);
     }
+    /**
+     * 查询收货人详情
+     */
+    @RequestMapping(value = "/listAllArea", produces = "application/json;charset=UTF-8")
+    public Result listAllArea(Integer id) {
+        return businessSupplierService.listAllArea(id);
+    }
 //
 //
 //    /**

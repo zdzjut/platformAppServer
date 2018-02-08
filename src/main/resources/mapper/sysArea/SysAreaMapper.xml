@@ -11,13 +11,9 @@
         <result column="postcode" property="postcode" jdbcType="VARCHAR"/>
     </resultMap>
     <select id="listProvince"  resultMap="BaseResultMap">
-        SELECT id,name
-        FROM sys_area
-        WHERE level = 1
+        SELECT id,name  FROM sys_area WHERE level = 1
     </select>
     <select id="listChildren" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-        SELECT id,name
-        FROM sys_area
-        WHERE parent = #{id}
+        SELECT id,name  FROM sys_area  WHERE parent = #{id}
     </select>
 </mapper>

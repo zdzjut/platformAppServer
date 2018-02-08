@@ -65,7 +65,7 @@ public class BusinessSupplier {
      * 供应商成立时间
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @JsonFormat(pattern = "yyyy/MM/dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     @Column(name = "supplier_found_date")
     private Date supplierFoundDate;
 

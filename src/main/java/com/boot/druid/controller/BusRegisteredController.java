@@ -25,5 +25,8 @@ public class BusRegisteredController {
     @RequestMapping(value = "login", produces = "application/json;charset=UTF-8")
     public Result login(BusRegistered user) {
         return busRegisteredService.login(user);
+    } @RequestMapping(value = "error", produces = "application/json;charset=UTF-8")
+    public Result error() {
+        return new Result("failure","非法访问");
     }
 }
