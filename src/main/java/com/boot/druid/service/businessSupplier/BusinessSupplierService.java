@@ -69,18 +69,7 @@ public class BusinessSupplierService {
             return new Result("failure", "异常", e);
         }
     }
-
-    //    public Result modifyConsignee(BusinessConsigneeInfo businessConsigneeInfo) {
-//        try {
-//            int i = businessConsigneeInfoMapper.updateByPrimaryKeySelective(businessConsigneeInfo);
-//
-//            return new Result("success", "修改成功",i);
-//        } catch (Exception e) {
-//            return new Result("failure", "异常", e);
-//        }
-//    }
-//
-    public Result deleteConsignee(Integer id) {
+    public Result deleteSupplier(Integer id) {
         try {
             BusinessSupplier businessSupplier = businessSupplierMapper.selectByPrimaryKey(id);
             if (businessSupplier.getWfStatus() == -2022109403) return new Result("failure", "供应商审核完成，无法删除");
@@ -102,7 +91,6 @@ public class BusinessSupplierService {
             businessSupplier.setSupplierCity(cityId);
             businessSupplier.setSupplierProvince(sysAreaMapper.selectByPrimaryKey(cityId).getParent());
             businessSupplier.setDeleteFlag(-2022100101);
-            businessSupplier.setIsMerged(-2022104801);
             businessSupplier.setCreator(businessSupplier.getClientId());
             businessSupplier.setId((int) result.getData());
             businessSupplier.setCreateDate(new Date());
@@ -133,5 +121,15 @@ public class BusinessSupplierService {
             e.printStackTrace();
             return new Result("failure", "异常", e);
         }
+    }
+
+    public Result modifySupplier(BusinessSupplier businessSupplier) {
+        try {
+            int i = businessSupplierMapper.updateByPrimaryKeySelective(businessSupplier);
+            return new Result("success", "修改成功", i);
+        } catch (Exception e) {
+            return new Result("failure", "异常", e);
+        }
+
     }
 }

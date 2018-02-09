@@ -1,7 +1,5 @@
 package com.boot.druid.util;
 
-import org.springframework.transaction.interceptor.TransactionAspectSupport;
-
 public class Result {
 
     private String result;

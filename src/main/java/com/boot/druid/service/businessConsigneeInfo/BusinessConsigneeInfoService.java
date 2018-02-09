@@ -74,10 +74,8 @@ public class BusinessConsigneeInfoService {
     public Result detailConsignee(Integer id) {
         try {
             BusinessConsigneeInfo businessConsigneeInfo = businessConsigneeInfoMapper.selectByPrimaryKey(id);
-            Country one = countryMapper.findOne(businessConsigneeInfo.getConsigneeCountry());
-            businessConsigneeInfo.setSubGmUsdBankAccount(one.getName());
-            //借用updator字段
-            businessConsigneeInfo.setUpdator(one.getNo());
+            SysCountryPort sysCountryPort = sysCountryPortMapper.selectByPrimaryKey(businessConsigneeInfo.getConsigneeCountry());
+            businessConsigneeInfo.setSubGmUsdBankAccount(sysCountryPort.getChineseName());
             return new Result("success", "查询成功", businessConsigneeInfo);
         } catch (Exception e) {
             e.printStackTrace();
@@ -89,7 +87,7 @@ public class BusinessConsigneeInfoService {
         try {
             int i = businessConsigneeInfoMapper.updateByPrimaryKeySelective(businessConsigneeInfo);
 
-            return new Result("success", "修改成功",i);
+            return new Result("success", "修改成功", i);
         } catch (Exception e) {
             return new Result("failure", "异常", e);
         }

@@ -1,6 +1,8 @@
 package com.boot.druid.model.sysArea;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Table(name = "sys_area")
 public class SysArea {

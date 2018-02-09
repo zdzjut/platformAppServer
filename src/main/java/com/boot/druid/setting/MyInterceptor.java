@@ -2,8 +2,6 @@ package com.boot.druid.setting;
 
 import com.boot.druid.service.BusRegisteredService;
 import org.springframework.beans.factory.BeanFactory;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;

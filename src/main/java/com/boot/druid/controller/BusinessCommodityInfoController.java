@@ -32,7 +32,7 @@ public class BusinessCommodityInfoController {
     }
 
     /**
-     * 查询商品商品详情
+     * 查询商品详情
      */
     @RequestMapping(value = "/detailCommodity", produces = "application/json;charset=UTF-8")
     public Result commodityDetail(Integer id) {

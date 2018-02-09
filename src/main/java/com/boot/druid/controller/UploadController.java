@@ -52,7 +52,7 @@ public class UploadController {
         }
     }
     /**
-     * 修改商品图片
+     * 修改收货人图片
      */
     @RequestMapping(value = "/modifyConsigneePicture")
     public Result modifyConsigneePicture(HttpServletRequest req,Integer consigneeId) {
@@ -71,13 +71,13 @@ public class UploadController {
      * 修改供应商图片
      */
     @RequestMapping(value = "/modifySupplierPicture")
-    public Result modifySupplierPicture(HttpServletRequest req,Integer supplierId) {
+    public Result modifySupplierPicture(HttpServletRequest req,Integer supplierId,String type) {
         try {
             StandardMultipartHttpServletRequest request = (StandardMultipartHttpServletRequest) req;
             Iterator<String> fileNames = request.getFileNames();
             MultipartFile file = request.getFile(fileNames.next());
 
-            return uploadPictureService.updateBusinessConsigneeInfoFile(file, supplierId);
+            return uploadPictureService.modifySupplierPicture(file, supplierId, type);
         } catch (Exception e) {
             e.printStackTrace();
             return new Result("failure", "异常", e);

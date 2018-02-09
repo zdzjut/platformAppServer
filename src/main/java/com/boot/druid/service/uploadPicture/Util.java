@@ -2,6 +2,7 @@ package com.boot.druid.service.uploadPicture;
 
 import com.boot.druid.model.businessCommodityInfo.BusinessCommodityInfo;
 import com.boot.druid.model.businessCommodityInfo.BusinessCommodityInfoDtoForMongo;
+import com.boot.druid.model.businessSupplier.BusinessSupplier;
 
 public class Util {
     public static String getPictureName(BusinessCommodityInfo one, String type) {
@@ -14,6 +15,29 @@ public class Util {
                 return one.getCommodityBrandImg();
             case "commodityOtherImg":
                 return one.getCommodityOtherImg();
+            default:
+                return "查询图片类型报错";
+        }
+    }
+
+    public static String getSupplierPictureName(BusinessSupplier one, String type) {
+        switch (type) {
+            case "businessLicenseIamge":
+                return one.getBusinessLicenseIamge();
+            case "generalTaxpayerImage":
+                return one.getGeneralTaxpayerImage();
+            case "organizationImage":
+                return one.getOrganizationImage();
+            case "socialCreditImage":
+                return one.getSocialCreditImage();
+            case "taxInvoiceImage":
+                return one.getTaxInvoiceImage();
+            case "idCardAImage":
+                return one.getIdCardAImage();
+            case "idCardBImage":
+                return one.getIdCardBImage();
+            case "taxRegistrationImage":
+                return one.getTaxRegistrationImage();
             default:
                 return "查询图片类型报错";
         }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boot.druid.mapper.businessClientBankAccount.BusinessClientBankAccountMapper">
+    <resultMap id="BaseResultMap" type="com.boot.druid.model.businessClientBankAccount.BusinessClientBankAccount">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="client_id" property="clientId" jdbcType="INTEGER"/>
+        <result column="complex_id" property="complexId" jdbcType="INTEGER"/>
+        <result column="type" property="type" jdbcType="INTEGER"/>
+        <result column="bank_account" property="bankAccount" jdbcType="VARCHAR"/>
+        <result column="bank_account_name" property="bankAccountName" jdbcType="VARCHAR"/>
+        <result column="bank_open_account" property="bankOpenAccount" jdbcType="VARCHAR"/>
+        <result column="bank_currency" property="bankCurrency" jdbcType="INTEGER"/>
+        <result column="is_default" property="isDefault" jdbcType="INTEGER"/>
+        <result column="delete_flag" property="deleteFlag" jdbcType="INTEGER"/>
+        <result column="creator" property="creator" jdbcType="INTEGER"/>
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+        <result column="updator" property="updator" jdbcType="INTEGER"/>
+        <result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <!--需要判断type-->
+    <select id="list" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+        SELECT id, bank_account_name,bank_account FROM business_client_bank_account
+        WHERE complex_id=#{complexId} AND delete_flag=-2022100101
+        <if test="keyword != null">
+            AND (bank_account_name LIKE #{keyword} OR bank_account LIKE #{keyword})
+        </if>
+    </select>
+</mapper>

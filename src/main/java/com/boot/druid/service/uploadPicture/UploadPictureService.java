@@ -113,6 +113,20 @@ public class UploadPictureService {
         }
     }
 
+    public Result modifySupplierPicture(MultipartFile file, Integer supplierId, String type) {
+        try {
+            BusinessSupplier businessSupplier = businessSupplierMapper.selectByPrimaryKey(supplierId);
+            String supplierPictureName = Util.getSupplierPictureName(businessSupplier, type);
+            type = supplierPictureName == null ? "create" : "update";
+            String pictureName = createPicture(file, supplierPictureName);
+            //关联到商品表
+            return new Result("success", type, pictureName);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result("failure", "异常", e);
+        }
+    }
+
     /**
      * 新增或替换图片,若ID不存在，新建一个图片，资源库新增
      * 若ID存在，替换文件
@@ -137,7 +151,6 @@ public class UploadPictureService {
         File oldFile = new File(pictureName);
         return oldFile.exists() && !oldFile.delete();
     }
-
 
 
 }

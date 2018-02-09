@@ -17,6 +17,8 @@ public class BusinessSupplierController {
     @Resource
     private BusinessSupplierService businessSupplierService;
 
+
+
     @Value("${platform.url}")
     private String platformUrl;
 
@@ -58,32 +60,28 @@ public class BusinessSupplierController {
     public Result listAllArea(Integer id) {
         return businessSupplierService.listAllArea(id);
     }
-//
-//
-//    /**
-//     * 修改收货人
-//     */
-//    @RequestMapping(value = "/modifyConsignee", produces = "application/json;charset=UTF-8")
-//    public Result modifyCommodity(BusinessConsigneeInfo businessConsigneeInfo) {
-//        return businessConsigneeInfoService.modifyConsignee(businessConsigneeInfo);
-//    }
-//
+    /**
+     * 修改收货人
+     */
+    @RequestMapping(value = "/modifySupplier", produces = "application/json;charset=UTF-8")
+    public Result modifySupplier(BusinessSupplier businessSupplier) {
+        return businessSupplierService.modifySupplier(businessSupplier);
+    }
 
     /**
      * 删除收货人
      */
     @RequestMapping(value = "/deleteSupplier", produces = "application/json;charset=UTF-8")
     public Result deleteSupplier(Integer id) {
-        return businessSupplierService.deleteConsignee(id);
+        return businessSupplierService.deleteSupplier(id);
     }
-//
+
 
     /**
      * 新增收货人insertConsignee
      */
     @RequestMapping(value = "/insertSupplier", produces = "application/json;charset=UTF-8")
     public Result insertSupplier(BusinessSupplier businessSupplier) {
-
         return businessSupplierService.insertSupplier(businessSupplier);
     }
 

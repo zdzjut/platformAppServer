@@ -3,8 +3,10 @@ package com.boot.druid.model.businessSupplier;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
-import javax.persistence.*;
 
 @Table(name = "business_supplier")
 public class BusinessSupplier {

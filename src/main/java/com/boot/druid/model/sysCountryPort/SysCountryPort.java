@@ -1,6 +1,8 @@
 package com.boot.druid.model.sysCountryPort;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Table(name = "sys_country_port")
 public class SysCountryPort {
